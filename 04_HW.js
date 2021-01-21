@@ -27,3 +27,39 @@ function numToObj(num) {
 }
 
 console.log(numToObj(num));
+
+
+// task_2:
+
+let basketOfGoods = [
+    {
+        good: 'pen',
+        price: 50
+    },
+
+    {
+        good: 'book',
+        price: 400,
+    },
+
+    {
+        good: 'paper',
+        price: 250
+    },
+
+    {
+        good: 'liner',
+        price: 120
+    }
+]
+
+
+function countBasketPrice(basket) {
+    let totalPrice = 0;
+    for (goods of basket) {
+        totalPrice += goods.price
+    }
+    return console.log('Total price of all the goods in the backet is ' + totalPrice)
+}
+
+countBasketPrice(basketOfGoods)
