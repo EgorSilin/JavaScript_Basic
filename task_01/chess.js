@@ -1,17 +1,17 @@
-// Создание необходимых переменных
+// create vars
 let letters = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
 let numbers = ['8', '7', '6', '5', '4', '3', '2', '1'];
-let cell; // данная переменная используется в 3 частях (цифры, буквы, ячейки)
-let drawFig; // для рисунков (фигуры)
+let cell; // for letters, numbers, fields cells
+let drawFig; // for pict
 
-// находим элемент body
+// query body
 const body = document.querySelector('body');
 
-// создание элемента main - в него будут добавляться ветки, а потом за одну оперцию подключим все на страницу
+// create main for branches
 const main = document.createElement('div');
 main.classList.add('main');
 
-// заголовок
+// title
 const title = document.createElement('div');
 title.classList.add('title');
 const titleText = document.createElement('h2');
@@ -19,12 +19,12 @@ titleText.textContent = 'Chess Board';
 title.appendChild(titleText);
 main.appendChild(title);
 
-// глобальная доска с цифрами/буквами и самой доской для игры
+// board with numbers and letters
 const board = document.createElement('div');
 board.classList.add('board');
 main.appendChild(board);
 
-// размещение цифр и букв на глобальной доске. Каждые в своих div
+// put numbers abd letters on board
 const lettersLine = document.createElement('div');
 lettersLine.classList.add('lettersDiv');
 
@@ -49,24 +49,21 @@ for (let number = 0; number < 8; number++) {
 
 board.appendChild(numbersLine);
 
-/* создание игровой доски. Т.к. на доске 64 поля (от 0 до 63), в будущем их можно удобно
-использовать для передвижения фигур, независимо от цифро/буквенных блоков*/
+// create fields on board
 const chessBoard = document.createElement('div');
 chessBoard.classList.add('chessBoard');
 
 var flag = true;
 for (let i = 0; i < 64; i++) {
     cell = document.createElement('div');
-    drawFig = document.createElement('img'); // в каждый div добавили тег img, для рисунков фигур 
-    drawFig.setAttribute('id', i); // назначили каждой ячейке img свой id
+    drawFig = document.createElement('img'); // in div added teg img for pict
+    drawFig.setAttribute('id', i); // set id
     cell.appendChild(drawFig);
     chessBoard.appendChild(cell);
-
-    // cell.textContent = i // используется для отладки (нахождения номера поля)
-
     cell.classList.add('cell');
 
-    if (i % 8 == 0) { // замена значения при переходе на новую 'строку'
+    // change value when jump to new string
+    if (i % 8 === 0) {
         flag = !flag;
     }
 
@@ -80,29 +77,29 @@ for (let i = 0; i < 64; i++) {
 
 board.appendChild(chessBoard);
 
-// и в самом конце - добавляем всю собранную ветку в body
+// add brunch in body
 body.appendChild(main);
 
-// в данном блоке рисуем фигуры на доске
+// draw pict on board
 function drawFigure() {
     for (let num = 0; num < 64; num++) {
-        if (num == 0 || num == 7) {
+        if (num === 0 || num === 7) {
             const fig = document.getElementById(num);
             fig.setAttribute('src', 'img/bRook.png');
         }
-        if (num == 56 || num == 63) {
+        if (num === 56 || num === 63) {
             const fig = document.getElementById(num);
             fig.setAttribute('src', 'img/wRook.png');
         }
-        if (num == 2 || num == 5) {
+        if (num === 2 || num === 5) {
             const fig = document.getElementById(num);
             fig.setAttribute('src', 'img/bBishop.png');
         }
-        if (num == 1 || num == 6) {
+        if (num === 1 || num === 6) {
             const fig = document.getElementById(num);
             fig.setAttribute('src', 'img/bKnight.png');
         }
-        if (num == 57 || num == 62) {
+        if (num === 57 || num === 62) {
             const fig = document.getElementById(num);
             fig.setAttribute('src', 'img/wKnight.png');
         }
@@ -110,7 +107,7 @@ function drawFigure() {
             const fig = document.getElementById(num);
             fig.setAttribute('src', 'img/bPawn.png');
         }
-        if (num == 58 || num == 61) {
+        if (num === 58 || num === 61) {
             const fig = document.getElementById(num);
             fig.setAttribute('src', 'img/wBishop.png');
         }
@@ -118,19 +115,19 @@ function drawFigure() {
             const fig = document.getElementById(num);
             fig.setAttribute('src', 'img/wPawn.png');
         }
-        if (num == 3) {
+        if (num === 3) {
             const fig = document.getElementById(num);
             fig.setAttribute('src', 'img/bQueen2.png');
         }
-        if (num == 4) {
+        if (num === 4) {
             const fig = document.getElementById(num);
             fig.setAttribute('src', 'img/bKing2.png');
         }
-        if (num == 59) {
+        if (num === 59) {
             const fig = document.getElementById(num);
             fig.setAttribute('src', 'img/wQueen2.png');
         }
-        if (num == 60) {
+        if (num === 60) {
             const fig = document.getElementById(num);
             fig.setAttribute('src', 'img/wKing2.png');
         }
