@@ -1,4 +1,4 @@
-var products = {
+let products = {
     123: {
         name: "Book",
         price: 250
@@ -17,7 +17,7 @@ var products = {
     }
 };
 
-var cart = {
+let cart = {
     hPdt: null,
     hItems: null,
     items: {},
@@ -143,7 +143,7 @@ var cart = {
     },
 
     add: function () {
-        if (cart.items[this.dataset.id] == undefined) {
+        if (cart.items[this.dataset.id] === undefined) {
             cart.items[this.dataset.id] = 1;
         } else {
             cart.items[this.dataset.id]++;
@@ -153,7 +153,7 @@ var cart = {
     },
 
     change: function () {
-        if (this.value == 0) {
+        if (this.value === 0) {
             delete cart.items[this.dataset.id];
         } else {
             cart.items[this.dataset.id] = this.value;
