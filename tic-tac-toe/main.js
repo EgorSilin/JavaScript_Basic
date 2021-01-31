@@ -10,7 +10,7 @@ const checkWinner = (model) => {
     if (equals3(model[i][0], model[i][1], model[i][2])) {
       winner = model[i][0];
     }
-  }  
+  }
 
   // vertical
   for (let i = 0; i < 3; i++) {
@@ -28,6 +28,18 @@ const checkWinner = (model) => {
   }
 
   return winner;
+}
+
+const checkDraw = (model) => {
+  let flag = true
+  for (let i = 0; i < 3; i++) {
+    for (let j = 0; j < 3; j++) {
+      if (model[i][j] === '') {
+        flag = false;
+      }
+    }
+  }
+  return flag
 }
 
 const game = () => {
@@ -62,18 +74,21 @@ const game = () => {
     const row = e.target.parentNode.dataset.index;
     const column = e.target.dataset.index;
 
-    // 2. check if td assigned
+    if (model[row][column] === '') {
+      model[row][column] = currentPlayer;
+      e.target.innerHTML = currentPlayer;
 
-    model[row][column] = currentPlayer;
-    e.target.innerHTML = currentPlayer;
 
-    const winner = checkWinner(model);
-    if (winner) {
-      alert(`Winner: ${winner}`);
+      const winner = checkWinner(model);
+      if (winner) {
+        alert(`Winner: ${winner}`);
+      }
+      const draw = checkDraw(model);
+      if (draw && !winner) {
+        alert('You played a DRAW')
+      }
+      currentPlayer = currentPlayer === playerX ? playerO : playerX;
     }
-    // 1. tie
-
-    currentPlayer = currentPlayer === playerX ? playerO : playerX;
   });
 }
 

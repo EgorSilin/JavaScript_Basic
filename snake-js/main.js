@@ -16,7 +16,7 @@ let scoreElem;
 function setup() {
   scoreElem = createDiv('Score = 0');
   scoreElem.position(20, 20);
-  scoreElem.id = 'score';
+  scoreElem.id('score');
   scoreElem.style('color', 'white');
 
   createCanvas(500, 500);
@@ -124,6 +124,7 @@ function checkForFruit() {
     xCor.unshift(xCor[0]);
     yCor.unshift(yCor[0]);
     numSegments++;
+    updateFruitCoordinates();
   }
 }
 
@@ -140,22 +141,22 @@ function updateFruitCoordinates() {
 
 function keyPressed() {
   switch (keyCode) {
-    case 74:
+    case 37:
       if (direction !== 'right') {
         direction = 'left';
       }
       break;
-    case 76:
-      if (direction !== 'right') {
+    case 39:
+      if (direction !== 'left') {
         direction = 'right';
       }
       break;
-    case 73:
+    case 38:
       if (direction !== 'down') {
         direction = 'up';
       }
       break;
-    case 75:
+    case 40:
       if (direction !== 'up') {
         direction = 'down';
       }
